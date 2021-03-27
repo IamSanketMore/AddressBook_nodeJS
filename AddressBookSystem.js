@@ -141,8 +141,9 @@ while(addressBookFlag == true)
     console.log("|-----------------------------------------------|");
     console.log("| 1  -> Add New Contact In AddreessBook         |");
     console.log("| 2  -> View All Contacts In AddreessBook       |");
-    console.log("| 3  -> Modify Exsiting Contact In AddreessBook |");
-    console.log("| 4  -> Exit From AddressBook System            |");
+    console.log("| 3  -> Modify Existing Contact In AddreessBook |");
+    console.log("| 4  -> Delete Contact Data From AddreessBook   |");
+    console.log("| 5  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
     console.log(">>> Enter Your Choice  >>>");
@@ -159,6 +160,10 @@ while(addressBookFlag == true)
              updateData(addressBookArray);
             break;
         case 4:
+            deleteData(addressBookArray);
+            break;
+           
+        case 5:
             addressBookFlag = false;
             console.log(" !! Thank You For Using Address Book System !! ");
             break;
@@ -167,15 +172,15 @@ while(addressBookFlag == true)
     }
 }
 
-
+// For Add Contact Data in AddressBook 
 function addData(addressBookArray)
 {
     let numOfData,numOfData1;
     try 
     { 
         try{
-        numOfData1  = prompt(' > How Many Data You Want to add in Address Book :-');
-        numOfData = Number(numOfData1) // Parse String to Number Format
+            numOfData1  = prompt(' > How Many Data You Want to add in Address Book :-');
+            numOfData = Number(numOfData1) // Parse String to Number Format
         }catch(exception)
         {
             console.exception(" !! Alert !!\n>Type only Numeric Value .");
@@ -193,7 +198,7 @@ function addData(addressBookArray)
             let newaddressBook = new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
             addressBookArray.push(newaddressBook);
         }
-        console.log(" * Person Contact SuccessFully Added . *");
+        console.log("\n * Person Contact SuccessFully Added . *");
     }
     catch (exception) 
     {
@@ -201,6 +206,7 @@ function addData(addressBookArray)
     }
 }
 
+// For View Contact Data in AddressBook
 function viewData(addressBookArray)
 {
     console.log("\n|--------------------------------------------- -|");
@@ -208,14 +214,22 @@ function viewData(addressBookArray)
     console.log("|-----------------------------------------------|");   
     console.log(addressBookArray.toString());
 }
+// For Updated/Modify Contact Data in AddressBook
 function updateData(addressBookArray)
 {
     const updateName = prompt("Enter Name To Search: ")
     addressBookArray.forEach(element => {
         try {
             if(element.firstName===updateName){
-                console.log(" ********* For Update/Modify/edit Data ********");
-                element.firstName = prompt(" New First Name :- ")
+                console.log("\n ********* For Update/Modify/edit Data ********");
+                element.firstName = prompt(" Enter New First Name :- ")
+                element.lastName = prompt(" Enter New Second Name :- ")
+                element.lastName = prompt(" Enter New Address :- ")
+                element.lastName = prompt(" Enter New City :- ")
+                element.lastName = prompt(" Enter New State :- ")
+                element.lastName = prompt(" Enter New Zip :- ")
+                element.lastName = prompt(" Enter New Phone Number :- ")
+                element.lastName = prompt(" Enter Email Id :- ")
             }
             else{
                 console.log(" Name  Not Found in DataBase ");
@@ -226,5 +240,28 @@ function updateData(addressBookArray)
         }
     
     });
-    console.log(" * Person Data SuccessFully Updated/Modified/Edited . *");
+    console.log("\n * Person Data SuccessFully Updated/Modified/Edited . *");
+}
+
+// For Delete Contact Data From AddressBook
+
+function deleteData(addressBookArray)
+{
+    const deleteName = prompt("Enter Name To Search: ")
+    addressBookArray.forEach(element => {
+        try {
+            if(element.firstName===deleteName){
+                console.log("\n ********* For Delete Data ********");
+                addressBookArray.pop(element);
+            }
+            else{
+                console.log(" Name  Not Found in DataBase ");
+                console.log(" > Make Sure You Type Validate First Name. ");
+            }
+        } catch (exception) {
+            console.error(exception)
+        }
+    
+    });
+    console.log("\n * Person Data SuccessFully Deleted . *");
 }
