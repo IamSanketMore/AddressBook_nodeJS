@@ -344,5 +344,15 @@ function searchContact(addressBookArray)
             console.log(SearchByState.toString());
             break;
 
+        case 3:
+            const count = () => addressBookArray.city;
+            //viewByCity1 = addressBookArray.find(viewByCity);
+            console.log("Total Number of Contacts in AddressBook is :- "+addressBookArray.reduce( count,0 ));
+            function viewByCity(addressBookArray)
+            {
+                return addressBookArray.city;                   
+            }
+           // console.log(viewByCity1.toString());
+            break;
     }
 }
