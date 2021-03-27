@@ -418,15 +418,42 @@ function sortContact(addressBookArray)
     switch(option)
     {
         case 1:
-                sortByName= addressBookArray.sort((a,b) => 
-                {
-                    //var nameA = a._firstName.toUpperCase(); // ignore upper and lowercase 
-                    //var nameB = b._firstName.toUpperCase(); // ignore upper and lowercase
-                    if(a._firstName<b._firstName) return -1;
-                    if(a._firstName>b._firstName) return 1;
-                    return 0
-                });
-                console.log(sortByName.toString());
+            sortByName= addressBookArray.sort((a,b) => 
+            {
+                var nameA = a._firstName.toUpperCase(); // ignore upper and lowercase 
+                var nameB = b._firstName.toUpperCase(); // ignore upper and lowercase
+               //if(a._firstName<b._firstName) return -1;
+                //if(a._firstName>b._firstName) return 1;
+                if( nameA < nameB )return -1;
+                if( nameA > nameB )return 1;
+                return 0
+            });
+            console.log(sortByName.toString());
+            break;
+        case 2:
+            sortByCity = addressBookArray.sort(function(a,b) 
+            {
+                if( a._city < b._city ) return -1;
+                if( a._city > b._city ) return 1;
+                return 0
+            });
+            console.log(sortByCity.toString());
+            break;
+        case 3:
+            sortByState = addressBookArray.sort((a,b) => {
+                if(a._state<b._state) return -1;
+                if(a._state>b._state) return 1;
+                return 0
+            });
+            console.log(sortByState.toString());
+            break;
+        case 4:
+            sortByZip = addressBookArray.sort((a,b) => {
+                if(a._zip<b._zip) return -1;
+                if(a._zip>b._zip) return 1;
+                return 0
+            });
+            console.log(sortByZip.toString());
             break;
     }
 }
