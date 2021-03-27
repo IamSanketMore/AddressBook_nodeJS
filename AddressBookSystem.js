@@ -146,6 +146,7 @@ while(addressBookFlag == true)
     console.log("| 5  -> Show Size of AddressBook                |");
     console.log("| 6  -> Search Contact Data from AddressBook    |");
     console.log("| 7  -> Count Contact Data from AddressBook     |");
+    console.log("| 8  -> Sort Contact Data In AddressBook        |");
     console.log("| 9  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
@@ -173,6 +174,9 @@ while(addressBookFlag == true)
             break;
         case 7:
             countContact(addressBookArray);
+            break;
+        case 8:
+            sortContact(addressBookArray);
             break;
         case 9:
             addressBookFlag = false;
@@ -356,8 +360,8 @@ function countContact(addressBookArray)
     console.log("\n|-----------------------------------------------|");
     console.log("|       ***  Count Option Choice   ***          |");
     console.log("|-----------------------------------------------|");
-    console.log("| 1  ->   Search By City                        |");
-    console.log("| 2  ->   Search By State                       |");
+    console.log("| 1  ->   Count By City                         |");
+    console.log("| 2  ->   Count By State                        |");
     console.log("|-----------------------------------------------|");
 
     const option = Number(prompt(">>> Enter Your Choice  >>>"))
@@ -365,7 +369,7 @@ function countContact(addressBookArray)
     {
         case 1:
             
-            const city = prompt("Enter Search City Name:- ");
+            const city = prompt("Enter City Name:- ");
             function filterByCity(element)
             {
                 if(element.city === city)
@@ -380,7 +384,7 @@ function countContact(addressBookArray)
             console.log("---------------------------------------------------------------");
             break;
         case 2:
-            const state = prompt("Enter Search State Name:- ");
+            const state = prompt("Enter State Name:- ");
             function filterByState(element)
             {
                 if(element.state === state)
@@ -395,5 +399,34 @@ function countContact(addressBookArray)
             console.log("---------------------------------------------------------------");
             break;
 
+    }
+}
+
+//Sort the Data by Person Name ,City State or zip 
+function sortContact(addressBookArray)
+{
+    console.log("\n|-----------------------------------------------|");
+    console.log("|       ***  Sort Option Choice   ***           |");
+    console.log("|-----------------------------------------------|");
+    console.log("| 1  ->   Sort By First Name                    |");
+    console.log("| 2  ->   Sort By City                          |");
+    console.log("| 3  ->   Sort By State                         |");
+    console.log("| 4  ->   Sort By Zip Code                      |");
+    console.log("|-----------------------------------------------|");
+
+    const option = Number(prompt(">>> Enter Your Choice  >>>"))
+    switch(option)
+    {
+        case 1:
+                sortByName= addressBookArray.sort((a,b) => 
+                {
+                    //var nameA = a._firstName.toUpperCase(); // ignore upper and lowercase 
+                    //var nameB = b._firstName.toUpperCase(); // ignore upper and lowercase
+                    if(a._firstName<b._firstName) return -1;
+                    if(a._firstName>b._firstName) return 1;
+                    return 0
+                });
+                console.log(sortByName.toString());
+            break;
     }
 }
