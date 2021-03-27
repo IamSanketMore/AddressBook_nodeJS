@@ -144,7 +144,8 @@ while(addressBookFlag == true)
     console.log("| 3  -> Modify Existing Contact In AddreessBook |");
     console.log("| 4  -> Delete Contact Data From AddreessBook   |");
     console.log("| 5  -> Show Size of AddressBook                |");
-    console.log("| 6  -> Exit From AddressBook System            |");
+    console.log("| 6  -> Search Contact Data from AddressBook    |");
+    console.log("| 7  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
     console.log(">>> Enter Your Choice  >>>");
@@ -165,9 +166,11 @@ while(addressBookFlag == true)
             break;
         case 5:
             sizeOfAddressBook(addressBookArray);
-            break
-           
+            break;
         case 6:
+            searchContact(addressBookArray);
+            break;
+        case 7:
             addressBookFlag = false;
             console.log(" !! Thank You For Using Address Book System !! ");
             break;
@@ -302,4 +305,44 @@ function sizeOfAddressBook(addressBookArray)
     console.log("---------------------------------------------------------------");
     console.log("Total Number of Contacts in AddressBook is :- "+addressBookArray.reduce( count,0 ));
     console.log("---------------------------------------------------------------");
+}
+
+//Search person By City Or State
+function searchContact(addressBookArray)
+{
+    console.log(" *** Search Person By City or State Name ***");
+    console.log("\n|-----------------------------------------------|");
+    console.log("|       ***  Search Option Choice   ***         |");
+    console.log("|-----------------------------------------------|");
+    console.log("| 1  ->   Search By City                        |");
+    console.log("| 2  ->   Search By State                       |");
+    console.log("|-----------------------------------------------|");
+
+    const option = Number(prompt(">>> Enter Your Choice  >>>"))
+    switch(option)
+    {
+        case 1:
+            const city = prompt("Enter Search City Name:- ");
+            function filterByCity(element)
+            {
+                if(element.city === city)
+                    return element; 
+                else
+                    console.log(" !! No Data Found !!\n>Make Sure You Type Right City name. ");
+            }
+            SearchByCity = addressBookArray.filter(filterByCity);
+            console.log(SearchByCity.toString());
+            break;
+        case 2:
+            const state = prompt("Enter Search State Name:- ");
+            function filterByState(element)
+            {
+                if(element.state === state)
+                    return element; 
+            }
+            SearchByState = addressBookArray.filter(filterByState);
+            console.log(SearchByState.toString());
+            break;
+
+    }
 }
