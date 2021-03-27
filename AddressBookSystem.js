@@ -145,7 +145,8 @@ while(addressBookFlag == true)
     console.log("| 4  -> Delete Contact Data From AddreessBook   |");
     console.log("| 5  -> Show Size of AddressBook                |");
     console.log("| 6  -> Search Contact Data from AddressBook    |");
-    console.log("| 7  -> Exit From AddressBook System            |");
+    console.log("| 7  -> Count Contact Data from AddressBook     |");
+    console.log("| 9  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
     console.log(">>> Enter Your Choice  >>>");
@@ -171,6 +172,9 @@ while(addressBookFlag == true)
             searchContact(addressBookArray);
             break;
         case 7:
+            countContact(addressBookArray);
+            break;
+        case 9:
             addressBookFlag = false;
             console.log(" !! Thank You For Using Address Book System !! ");
             break;
@@ -327,8 +331,6 @@ function searchContact(addressBookArray)
             {
                 if(element.city === city)
                     return element; 
-                else
-                    console.log(" !! No Data Found !!\n>Make Sure You Type Right City name. ");
             }
             SearchByCity = addressBookArray.filter(filterByCity);
             console.log(SearchByCity.toString());
@@ -344,15 +346,54 @@ function searchContact(addressBookArray)
             console.log(SearchByState.toString());
             break;
 
-        case 3:
-            const count = () => addressBookArray.city;
-            //viewByCity1 = addressBookArray.find(viewByCity);
-            console.log("Total Number of Contacts in AddressBook is :- "+addressBookArray.reduce( count,0 ));
-            function viewByCity(addressBookArray)
+    }
+}
+
+//Count total number of Persons by the City And State 
+function countContact(addressBookArray)
+{
+    console.log(" *** Count Person By City or State Name ***");
+    console.log("\n|-----------------------------------------------|");
+    console.log("|       ***  Count Option Choice   ***          |");
+    console.log("|-----------------------------------------------|");
+    console.log("| 1  ->   Search By City                        |");
+    console.log("| 2  ->   Search By State                       |");
+    console.log("|-----------------------------------------------|");
+
+    const option = Number(prompt(">>> Enter Your Choice  >>>"))
+    switch(option)
+    {
+        case 1:
+            
+            const city = prompt("Enter Search City Name:- ");
+            function filterByCity(element)
             {
-                return addressBookArray.city;                   
+                if(element.city === city)
+                    return element; 
             }
-           // console.log(viewByCity1.toString());
+            SearchByCity = addressBookArray.filter(filterByCity);
+            const countCity = () => SearchByCity.length;
+            console.log("---------------------------------------------------------------");
+            console.log("     *** Show the Count total Persons Lives in City   ***      ");
+            console.log("---------------------------------------------------------------");
+            console.log("Total Number of Persons Lives in "+city+" City is :- "+SearchByCity.reduce( countCity,0 ));
+            console.log("---------------------------------------------------------------");
             break;
+        case 2:
+            const state = prompt("Enter Search State Name:- ");
+            function filterByState(element)
+            {
+                if(element.state === state)
+                    return element; 
+            }
+            SearchByState = addressBookArray.filter(filterByState);
+            const countState = () => SearchByState.length;
+            console.log("---------------------------------------------------------------");
+            console.log("     *** Show the Count total Persons Lives in City   ***      ");
+            console.log("---------------------------------------------------------------");
+            console.log("Total Number of Persons Lives in "+state+" State is :- "+SearchByState.reduce( countState,0 ));
+            console.log("---------------------------------------------------------------");
+            break;
+
     }
 }
