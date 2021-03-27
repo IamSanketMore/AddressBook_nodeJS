@@ -1,3 +1,5 @@
+const prompt = require('prompt-sync')(); //For Accept Input Command Line Arguments
+
 class AddressBook
 {
     constructor(...params)
@@ -112,7 +114,7 @@ class AddressBook
     }
     toString()
     {
-            return "\nAddressBook Conatct :- \n[ "+
+            return "\n"+"AddressBook Conatct :-"+" \n[ "+
             "First Name = "+ this.firstName +
             ", Last Name = "+ this.lastName+
             ", Address = "+ this.address +
@@ -122,11 +124,39 @@ class AddressBook
             ", Phone Number = "+ this.phoneNumber +
             ", Email ID = "+ this.email + " ] ";
     }
-}
+}// AddressBook Class End
 
 try {
     let newAddressBook = new AddressBook("Sanket","More","Dhule","Dhule","Maharastra","124478","91 2234567890","abcsanket@.com");
-    console.log(newAddressBook.toString());
-} catch (e) {
-    console.error(e)
+    //console.log(newAddressBook.toString());
+} 
+catch (exception) 
+{
+    console.error(exception)
+}
+
+let addressBookArray = new Array();
+try 
+{ 
+    const  numOfData1  = prompt(' How Many Data You Want to add in Address Book ');
+    let numOfData = Number(numOfData1) // Parse String to Number Format
+    
+    for(let i = 1; i <= numOfData; i++)
+    {
+        firstName = prompt("Enter First Name: ");
+        lastName = prompt("Enter Last Name: ");
+        address = prompt("Enter Address: ");
+        city = prompt("Enter City: ");
+        state = prompt("Enter State: ");
+        zip = prompt("Enter Zip: ");
+        phoneNumber = prompt("Enter Phone Number: ");
+        email = prompt("Enter Email Address: ");
+        let newaddressBook = new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
+        addressBookArray.push(newaddressBook.toString());
+    }
+    console.log(addressBookArray);
+}
+catch (exception) 
+{
+    console.error(exception)
 }
